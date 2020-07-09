@@ -27,7 +27,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ACLIM Repo: [**github.com/kholsman/ACLIM**](https://github.com/kholsman/ACLIM "ACLIM Repo")
 
-```{r}
+```{r, echo=F}
  #source("R/make.R")       # loads packages, data, setup, etc.
  thisYr <- format(Sys.time(), "%Y")
  today  <- format(Sys.time(), "%b %d, %Y")

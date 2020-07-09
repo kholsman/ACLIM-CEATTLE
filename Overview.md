@@ -1,11 +1,5 @@
 ACLIM Repo: [**github.com/kholsman/ACLIM**](https://github.com/kholsman/ACLIM "ACLIM Repo")
 
-``` r
- #source("R/make.R")       # loads packages, data, setup, etc.
- thisYr <- format(Sys.time(), "%Y")
- today  <- format(Sys.time(), "%b %d, %Y")
-```
-
 #### Repo and data files maintained by:
 
 -   Kirstin Holsman
