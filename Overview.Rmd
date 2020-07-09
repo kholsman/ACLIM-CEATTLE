@@ -106,7 +106,7 @@ xxx       | Yes |CE-B40,CNaive B0   | C = ABC   |ricker + SST|CEATTLE   |ACLIM/R
 
 ## 2.2. Download data from figshare:  
 
-To run the analyses or create the paper figures you will now need to download the large zipped data folder here: https://figshare.com/s/81007e2dd5edee0a5a7a (Data 10.6084/m9.figshare.12568625) and copy - paste the contents (folders "in" and "out"") it in the directory: 
+To run the analyses or create the paper figures you will now need to download the large zipped data folder here: https://figshare.com/s/bc27693d6b9002425bff (DOI: ) and copy - paste the contents (folders "in" and "out"") it in the directory: 
 '[your local directory path]/EBM_Holsman_NatComm/data' or simply run the following script to download and place the data in the correct sub-folders:
 
 ```{r, eval=FALSE}
