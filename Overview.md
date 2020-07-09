@@ -60,13 +60,13 @@ For more information about the downscaling models underpinning these simulations
 
 ``` r
     # download the code:
-    main_nm       <- "EBM_Holsman_NatComm-master"
+    main_nm       <- "ACLIM-CEATTLE-Master"
     download_path <- path.expand("~/desktop")
     main          <- file.path(download_path,main_nm)
    
     # download the code:
     dest_file     <- file.path(download_path,paste0(main_nm,".zip"))
-    url           <-"https://github.com/kholsman/EBM_Holsman_NatComm/archive/master.zip"
+    url           <-"https://github.com/kholsman/ACLIM-CEATTLE/archive/master.zip"
     download.file(url=url, destfile=dest_file)
     
     # unzip the .zip file
@@ -83,7 +83,8 @@ To run the analyses or create the paper figures you will now need to download th
 ``` r
     cat("The download takes a few mins (large data files)...\n")
 
-    url <-  "https://ndownloader.figshare.com/files/23442137?private_link=81007e2dd5edee0a5a7a"
+    #url <-  "https://ndownloader.figshare.com/files/23442137?private_link=81007e2dd5edee0a5a7a"
+    url<- "ToBeAdded"    
     dest_path  <-  file.path(main,"data.zip")
     download.file(url=url, destfile=dest_path,method="libcurl")
     

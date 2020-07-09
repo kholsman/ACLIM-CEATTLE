@@ -185,9 +185,6 @@ summary {
 
 
 <p>ACLIM Repo: <a href="https://github.com/kholsman/ACLIM" title="ACLIM Repo"><strong>github.com/kholsman/ACLIM</strong></a></p>
-<pre class="r"><code> #source(&quot;R/make.R&quot;)       # loads packages, data, setup, etc.
- thisYr &lt;- format(Sys.time(), &quot;%Y&quot;)
- today  &lt;- format(Sys.time(), &quot;%b %d, %Y&quot;)</code></pre>
 <div id="repo-and-data-files-maintained-by" class="section level4">
 <h4>Repo and data files maintained by:</h4>
 <ul>
@@ -377,13 +374,13 @@ NOAA Fisheries, Seattle WA<br />
 <div id="download-the-code-from-the-github-repository" class="section level2">
 <h2>2.1. Download the code from the github repository:</h2>
 <pre class="r"><code>    # download the code:
-    main_nm       &lt;- &quot;EBM_Holsman_NatComm-master&quot;
+    main_nm       &lt;- &quot;ACLIM-CEATTLE-Master&quot;
     download_path &lt;- path.expand(&quot;~/desktop&quot;)
     main          &lt;- file.path(download_path,main_nm)
    
     # download the code:
     dest_file     &lt;- file.path(download_path,paste0(main_nm,&quot;.zip&quot;))
-    url           &lt;-&quot;https://github.com/kholsman/EBM_Holsman_NatComm/archive/master.zip&quot;
+    url           &lt;-&quot;https://github.com/kholsman/ACLIM-CEATTLE/archive/master.zip&quot;
     download.file(url=url, destfile=dest_file)
     
     # unzip the .zip file
@@ -393,10 +390,11 @@ NOAA Fisheries, Seattle WA<br />
 </div>
 <div id="download-data-from-figshare" class="section level2">
 <h2>2.2. Download data from figshare:</h2>
-<p>To run the analyses or create the paper figures you will now need to download the large zipped data folder here: <a href="https://figshare.com/s/81007e2dd5edee0a5a7a" class="uri">https://figshare.com/s/81007e2dd5edee0a5a7a</a> (Data 10.6084/m9.figshare.12568625) and copy - paste the contents (folders “in” and “out”“) it in the directory: ‘[your local directory path]/EBM_Holsman_NatComm/data’ or simply run the following script to download and place the data in the correct sub-folders:</p>
+<p>To run the analyses or create the paper figures you will now need to download the large zipped data folder here: <a href="https://figshare.com/s/bc27693d6b9002425bff" class="uri">https://figshare.com/s/bc27693d6b9002425bff</a> (DOI: ) and copy - paste the contents (folders “in” and “out”“) it in the directory: ‘[your local directory path]/EBM_Holsman_NatComm/data’ or simply run the following script to download and place the data in the correct sub-folders:</p>
 <pre class="r"><code>    cat(&quot;The download takes a few mins (large data files)...\n&quot;)
 
-    url &lt;-  &quot;https://ndownloader.figshare.com/files/23442137?private_link=81007e2dd5edee0a5a7a&quot;
+    #url &lt;-  &quot;https://ndownloader.figshare.com/files/23442137?private_link=81007e2dd5edee0a5a7a&quot;
+    url&lt;- &quot;ToBeAdded&quot;    
     dest_path  &lt;-  file.path(main,&quot;data.zip&quot;)
     download.file(url=url, destfile=dest_path,method=&quot;libcurl&quot;)
     

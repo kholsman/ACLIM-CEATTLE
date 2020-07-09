@@ -3,6 +3,11 @@ title: "ACLIM - CEATTLE simulations"
 author: "Kirstin Holsman"
 date: "6/24/2020"
 output:
+  pdf_document:
+    fig_caption: yes
+    highlight: tango
+    keep_tex: yes
+    latex_engine: xelatex
   html_document:
     df_print: kable
     fig_caption: yes
@@ -11,11 +16,6 @@ output:
   - \usepackage{inputenc}
   - \usepackage{unicode-math}
   - \pagenumbering{gobble}ls()
-  pdf_document:
-    fig_caption: yes
-    highlight: tango
-    keep_tex: yes
-    latex_engine: xelatex
   word_document:
     fig_caption: yes
     fig_width: 4
@@ -88,13 +88,13 @@ xxx       | Yes |CE-B40,CNaive B0   | C = ABC   |ricker + SST|CEATTLE   |ACLIM/R
 
 ```{r, eval = FALSE}
     # download the code:
-    main_nm       <- "EBM_Holsman_NatComm-master"
+    main_nm       <- "ACLIM-CEATTLE-Master"
     download_path <- path.expand("~/desktop")
     main          <- file.path(download_path,main_nm)
    
     # download the code:
     dest_file     <- file.path(download_path,paste0(main_nm,".zip"))
-    url           <-"https://github.com/kholsman/EBM_Holsman_NatComm/archive/master.zip"
+    url           <-"https://github.com/kholsman/ACLIM-CEATTLE/archive/master.zip"
     download.file(url=url, destfile=dest_file)
     
     # unzip the .zip file
@@ -112,7 +112,8 @@ To run the analyses or create the paper figures you will now need to download th
 ```{r, eval=FALSE}
     cat("The download takes a few mins (large data files)...\n")
 
-    url <-  "https://ndownloader.figshare.com/files/23442137?private_link=81007e2dd5edee0a5a7a"
+    #url <-  "https://ndownloader.figshare.com/files/23442137?private_link=81007e2dd5edee0a5a7a"
+    url<- "ToBeAdded"    
     dest_path  <-  file.path(main,"data.zip")
     download.file(url=url, destfile=dest_path,method="libcurl")
     
