@@ -140,6 +140,11 @@ The first step is to run the make.R script to load the data, packages, and setup
 ```
 
 
+```{r, eval=F, echo=F}
+ source("R/sub_fun/rmd2md.R")
+ rmd2md(rmd_fl = "Overview",md_fl = "README")
+```
+
 # 4 Primary and Intermediate Data sources and models
 
 Various simulation outputs were made available for use in this analysis through the interdisciplinary [Alaska Climate Integrated Modeling (ACLIM) project]("https://www.fisheries.noaa.gov/alaska/ecosystems/alaska-climate-integrated-modeling-project"). An overview of the project and simulation experiments can be found in [Hollowed et al. 2020]("https://www.frontiersin.org/articles/10.3389/fmars.2019.00775/full").
