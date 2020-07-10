@@ -229,25 +229,21 @@ repository:}\label{download-the-code-from-the-github-repository}
 figshare:}\label{download-data-from-figshare}
 
 To run the analyses or create the paper figures you will now need to
-download the large zipped data folder here:
-\url{https://figshare.com/s/bc27693d6b9002425bff} (DOI: ) and copy -
-paste the contents (folders ``in'' and ``out''``) it in the directory:
-`{[}your local directory path{]}/EBM\_Holsman\_NatComm/data' or simply
-run the following script to download and place the data in the correct
-sub-folders:
+download the large zipped data folder here: `{[}your local directory
+path{]}/EBM\_Holsman\_NatComm/data' or simply run the following script
+to download and place the data in the correct sub-folders:
 
 \begin{Shaded}
 \begin{Highlighting}[]
     \KeywordTok{cat}\NormalTok{(}\StringTok{"The download takes a few mins (large data files)...}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
 
-    \CommentTok{#url <-  "https://ndownloader.figshare.com/files/23442137?private_link=81007e2dd5edee0a5a7a"}
-    \NormalTok{url<-}\StringTok{ "ToBeAdded"}    
-    \NormalTok{dest_path  <-}\StringTok{  }\KeywordTok{file.path}\NormalTok{(main,}\StringTok{"data.zip"}\NormalTok{)}
+    \NormalTok{url       <-}\StringTok{ "tobeadded"} 
+    \NormalTok{dest_path  <-}\StringTok{  }\KeywordTok{file.path}\NormalTok{(main,}\StringTok{"Data/summary_files.zip"}\NormalTok{)}
     \KeywordTok{download.file}\NormalTok{(}\DataTypeTok{url=}\NormalTok{url, }\DataTypeTok{destfile=}\NormalTok{dest_path,}\DataTypeTok{method=}\StringTok{"libcurl"}\NormalTok{)}
     
     \KeywordTok{cat}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Download complete...}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
     
-    \KeywordTok{unzip} \NormalTok{(}\KeywordTok{file.path}\NormalTok{(main,}\StringTok{"data.zip"}\NormalTok{), }\DataTypeTok{exdir =} \StringTok{"./"}\NormalTok{,}\DataTypeTok{overwrite=}\NormalTok{T)}
+    \KeywordTok{unzip} \NormalTok{(}\KeywordTok{file.path}\NormalTok{(main,}\StringTok{"Data/summary_files.zip"}\NormalTok{), }\DataTypeTok{exdir =} \StringTok{"./"}\NormalTok{,}\DataTypeTok{overwrite=}\NormalTok{T)}
     \KeywordTok{cat}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{Files unzipped successfully...}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -269,6 +265,34 @@ those packages can be found in `EBM\_Holsman\_NatComm/R/packages.R'.}
     
     \CommentTok{# load data, packages, setup, etc.}
     \KeywordTok{source}\NormalTok{(}\StringTok{"R/make.R"}\NormalTok{)}
+    
+    \CommentTok{# preview the simulation file:}
+    \KeywordTok{head}\NormalTok{(sim_msm)}
+    
+    \CommentTok{# select subset of data for analyses:}
+  \CommentTok{# sub <- sim_msm%>%}
+  \CommentTok{#   filter(recMode==rset,hMode%in%rfset, Scenario==scn)}
+
+    
+    \NormalTok{dat_2_5_3  <-}\StringTok{ }\NormalTok{sim_msm%>%}\KeywordTok{filter}\NormalTok{(recMode==}\KeywordTok{as.character}\NormalTok{(rset),hMode==}\StringTok{"3"}\NormalTok{, }\KeywordTok{is.na}\NormalTok{(MC_n)==T)}
+    \NormalTok{dat_2_5_12 <-}\StringTok{ }\NormalTok{sim_msm%>%}\KeywordTok{filter}\NormalTok{(recMode==}\KeywordTok{as.character}\NormalTok{(rset),hMode==}\StringTok{"12"}\NormalTok{, }\KeywordTok{is.na}\NormalTok{(MC_n)==T)}
+    \NormalTok{dat_2_5_13 <-}\StringTok{ }\NormalTok{sim_msm%>%}\KeywordTok{filter}\NormalTok{(recMode==}\KeywordTok{as.character}\NormalTok{(rset),hMode==}\StringTok{"13"}\NormalTok{, }\KeywordTok{is.na}\NormalTok{(MC_n)==T)}
+    
+    \NormalTok{dat2       <-}\StringTok{ }\KeywordTok{as_tibble}\NormalTok{(dat_2_5_3)%>%}\KeywordTok{filter}\NormalTok{(age==}\DecValTok{1}\NormalTok{,!hModev2%in%}\KeywordTok{c}\NormalTok{(}\StringTok{"H12_259_cf"}\NormalTok{,}\StringTok{"H12_219_mnFcf"}\NormalTok{,}\StringTok{"H12_259_CENaivecf"}\NormalTok{))}
+    \KeywordTok{unique}\NormalTok{(dat2$hModev2)}
+    \NormalTok{dat2$legend<-}\StringTok{""}
+    \NormalTok{for(i in }\DecValTok{1}\NormalTok{:}\KeywordTok{dim}\NormalTok{(run_def)[}\DecValTok{1}\NormalTok{])\{}
+      \NormalTok{tt <-}\StringTok{ }\KeywordTok{grepl}\NormalTok{(run_def[i,]$}\StringTok{`}\DataTypeTok{Run title}\StringTok{`}\NormalTok{,dat2$hModev2,}\DataTypeTok{fixed=}\NormalTok{T)}
+      \NormalTok{if(}\KeywordTok{any}\NormalTok{(tt))\{}
+        \NormalTok{dat2[}\KeywordTok{which}\NormalTok{(tt),]$legend <-}\StringTok{ }\NormalTok{run_def[i,]$Legend}
+      \NormalTok{\}}
+    \NormalTok{\}}
+    \NormalTok{dat2$Scenario <-}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(Scenarios[dat2$Scenario])}
+    \NormalTok{dat2$spp      <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(}\KeywordTok{names}\NormalTok{(sppINFO)[dat2$species],}\DataTypeTok{levels=}\KeywordTok{names}\NormalTok{(sppINFO))}
+    \KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data=}\NormalTok{dat2) +}
+\StringTok{      }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{future_year,}\DataTypeTok{y=}\NormalTok{F,}\DataTypeTok{color=}\NormalTok{Scenario)) +}
+\StringTok{      }\KeywordTok{facet_grid}\NormalTok{(spp~}\KeywordTok{factor}\NormalTok{(hModev2),}\DataTypeTok{scales=}\StringTok{"free_y"}\NormalTok{)+}
+\StringTok{      }\KeywordTok{theme_minimal}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 

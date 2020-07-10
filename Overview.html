@@ -390,17 +390,16 @@ NOAA Fisheries, Seattle WA<br />
 </div>
 <div id="download-data-from-figshare" class="section level2">
 <h2>2.2. Download data from figshare:</h2>
-<p>To run the analyses or create the paper figures you will now need to download the large zipped data folder here: <a href="https://figshare.com/s/bc27693d6b9002425bff" class="uri">https://figshare.com/s/bc27693d6b9002425bff</a> (DOI: ) and copy - paste the contents (folders “in” and “out”“) it in the directory: ‘[your local directory path]/EBM_Holsman_NatComm/data’ or simply run the following script to download and place the data in the correct sub-folders:</p>
+<p>To run the analyses or create the paper figures you will now need to download the large zipped data folder here: <!-- https://figshare.com/s/bc27693d6b9002425bff (DOI: ) and copy - paste the contents (folders "in" and "out"") it in the directory:  --> ‘[your local directory path]/EBM_Holsman_NatComm/data’ or simply run the following script to download and place the data in the correct sub-folders: <!-- url  <- "https://ndownloader.figshare.com/files/23756315?private_link=bc27693d6b9002425bff"     --></p>
 <pre class="r"><code>    cat(&quot;The download takes a few mins (large data files)...\n&quot;)
 
-    #url &lt;-  &quot;https://ndownloader.figshare.com/files/23442137?private_link=81007e2dd5edee0a5a7a&quot;
-    url&lt;- &quot;ToBeAdded&quot;    
-    dest_path  &lt;-  file.path(main,&quot;data.zip&quot;)
+    url       &lt;- &quot;tobeadded&quot; 
+    dest_path  &lt;-  file.path(main,&quot;Data/summary_files.zip&quot;)
     download.file(url=url, destfile=dest_path,method=&quot;libcurl&quot;)
     
     cat(&quot;\nDownload complete...\n&quot;)
     
-    unzip (file.path(main,&quot;data.zip&quot;), exdir = &quot;./&quot;,overwrite=T)
+    unzip (file.path(main,&quot;Data/summary_files.zip&quot;), exdir = &quot;./&quot;,overwrite=T)
     cat(&quot;\nFiles unzipped successfully...\n&quot;)</code></pre>
 </div>
 <div id="set-things-up" class="section level2">
@@ -412,7 +411,35 @@ NOAA Fisheries, Seattle WA<br />
     setwd(main)
     
     # load data, packages, setup, etc.
-    source(&quot;R/make.R&quot;)</code></pre>
+    source(&quot;R/make.R&quot;)
+    
+    # preview the simulation file:
+    head(sim_msm)
+    
+    # select subset of data for analyses:
+  # sub &lt;- sim_msm%&gt;%
+  #   filter(recMode==rset,hMode%in%rfset, Scenario==scn)
+
+    
+    dat_2_5_3  &lt;- sim_msm%&gt;%filter(recMode==as.character(rset),hMode==&quot;3&quot;, is.na(MC_n)==T)
+    dat_2_5_12 &lt;- sim_msm%&gt;%filter(recMode==as.character(rset),hMode==&quot;12&quot;, is.na(MC_n)==T)
+    dat_2_5_13 &lt;- sim_msm%&gt;%filter(recMode==as.character(rset),hMode==&quot;13&quot;, is.na(MC_n)==T)
+    
+    dat2       &lt;- as_tibble(dat_2_5_3)%&gt;%filter(age==1,!hModev2%in%c(&quot;H12_259_cf&quot;,&quot;H12_219_mnFcf&quot;,&quot;H12_259_CENaivecf&quot;))
+    unique(dat2$hModev2)
+    dat2$legend&lt;-&quot;&quot;
+    for(i in 1:dim(run_def)[1]){
+      tt &lt;- grepl(run_def[i,]$`Run title`,dat2$hModev2,fixed=T)
+      if(any(tt)){
+        dat2[which(tt),]$legend &lt;- run_def[i,]$Legend
+      }
+    }
+    dat2$Scenario &lt;- as.factor(Scenarios[dat2$Scenario])
+    dat2$spp      &lt;- factor(names(sppINFO)[dat2$species],levels=names(sppINFO))
+    ggplot(data=dat2) +
+      geom_line(aes(x=future_year,y=F,color=Scenario)) +
+      facet_grid(spp~factor(hModev2),scales=&quot;free_y&quot;)+
+      theme_minimal()</code></pre>
 </div>
 </div>
 <div id="primary-and-intermediate-data-sources-and-models" class="section level1">

@@ -78,19 +78,18 @@ For more information about the downscaling models underpinning these simulations
 2.2. Download data from figshare:
 ---------------------------------
 
-To run the analyses or create the paper figures you will now need to download the large zipped data folder here: <https://figshare.com/s/bc27693d6b9002425bff> (DOI: ) and copy - paste the contents (folders "in" and "out"") it in the directory: '\[your local directory path\]/EBM\_Holsman\_NatComm/data' or simply run the following script to download and place the data in the correct sub-folders:
+To run the analyses or create the paper figures you will now need to download the large zipped data folder here: <!-- https://figshare.com/s/bc27693d6b9002425bff (DOI: ) and copy - paste the contents (folders "in" and "out"") it in the directory:  --> '\[your local directory path\]/EBM\_Holsman\_NatComm/data' or simply run the following script to download and place the data in the correct sub-folders: <!-- url  <- "https://ndownloader.figshare.com/files/23756315?private_link=bc27693d6b9002425bff"     -->
 
 ``` r
     cat("The download takes a few mins (large data files)...\n")
 
-    #url <-  "https://ndownloader.figshare.com/files/23442137?private_link=81007e2dd5edee0a5a7a"
-    url<- "ToBeAdded"    
-    dest_path  <-  file.path(main,"data.zip")
+    url       <- "tobeadded" 
+    dest_path  <-  file.path(main,"Data/summary_files.zip")
     download.file(url=url, destfile=dest_path,method="libcurl")
     
     cat("\nDownload complete...\n")
     
-    unzip (file.path(main,"data.zip"), exdir = "./",overwrite=T)
+    unzip (file.path(main,"Data/summary_files.zip"), exdir = "./",overwrite=T)
     cat("\nFiles unzipped successfully...\n")
 ```
 
@@ -107,6 +106,34 @@ The first step is to run the make.R script to load the data, packages, and setup
     
     # load data, packages, setup, etc.
     source("R/make.R")
+    
+    # preview the simulation file:
+    head(sim_msm)
+    
+    # select subset of data for analyses:
+  # sub <- sim_msm%>%
+  #   filter(recMode==rset,hMode%in%rfset, Scenario==scn)
+
+    
+    dat_2_5_3  <- sim_msm%>%filter(recMode==as.character(rset),hMode=="3", is.na(MC_n)==T)
+    dat_2_5_12 <- sim_msm%>%filter(recMode==as.character(rset),hMode=="12", is.na(MC_n)==T)
+    dat_2_5_13 <- sim_msm%>%filter(recMode==as.character(rset),hMode=="13", is.na(MC_n)==T)
+    
+    dat2       <- as_tibble(dat_2_5_3)%>%filter(age==1,!hModev2%in%c("H12_259_cf","H12_219_mnFcf","H12_259_CENaivecf"))
+    unique(dat2$hModev2)
+    dat2$legend<-""
+    for(i in 1:dim(run_def)[1]){
+      tt <- grepl(run_def[i,]$`Run title`,dat2$hModev2,fixed=T)
+      if(any(tt)){
+        dat2[which(tt),]$legend <- run_def[i,]$Legend
+      }
+    }
+    dat2$Scenario <- as.factor(Scenarios[dat2$Scenario])
+    dat2$spp      <- factor(names(sppINFO)[dat2$species],levels=names(sppINFO))
+    ggplot(data=dat2) +
+      geom_line(aes(x=future_year,y=F,color=Scenario)) +
+      facet_grid(spp~factor(hModev2),scales="free_y")+
+      theme_minimal()
 ```
 
 4 Primary and Intermediate Data sources and models
