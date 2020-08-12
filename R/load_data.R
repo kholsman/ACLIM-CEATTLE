@@ -5,9 +5,6 @@
 # updated 2020
 # ----------------------------------------
   cat("loading data, this may take a few mins...")
-  
-  # load ggplot theme:
-  source("R/sub_scripts/THEMES_GGPLOT.r")
 
   #_______________________________________
   # Read in simulation data and list of sims:
@@ -24,7 +21,7 @@
   # Load simulations, risk calcs, and threshold results (or run these if not in folder):
   #_______________________________________
 
-  cat("\nLoading Intermediate data ('data/in')...\n")
+  cat(paste0("\nLoading Intermediate data ('",in_dir,"')...\n"))
     for(fn in infn){
       if(!any(dir(in_dir)%in%fn))
         stop(paste0(fn," file not found in: \t \t",in_dir,
@@ -33,18 +30,25 @@
       load(file.path(in_dir,fn))
       cat(paste("\nloaded",fn))
     }
-  cat("\nIntermediate data loaded ('data/in')...\n")
+  cat(paste0("\nIntermediate data loaded  ('",in_dir,"')...\n"))
   
-  cat("\n\nLoading final data ('data/out')...\n")
-  for(fn in outfn){
-    if(!any(dir(out_dir)%in%fn))
-      stop(paste0(fn," file not found in: \t \t",out_dir,
-                  "\n\nplease go to: https://figshare.com/s/6dea7722df39e07d79f0","",
-                  "\n\nand download file into: \t \t",out_dir,"/",fn))
-    load(file.path(out_dir,fn))
-    cat(paste("\nloaded:",fn))
+  if(!file.exists(out_dir)){
+    dir.create(out_dir)
+    compile.natcommruns(out=out_dir,savelist= outfn)
+  }else{
+    cat(paste0("\nLoading final data ('",out_dir,"')...\n"))
+    for(fn in outfn){
+      if(!any(dir(out_dir)%in%fn))
+        stop(paste0(fn," file not found in: \t \t",out_dir,
+                    "\n\nplease go to: https://figshare.com/s/6dea7722df39e07d79f0","",
+                    "\n\nand download file into: \t \t",out_dir,"/",fn))
+      load(file.path(out_dir,fn))
+      cat(paste("\nloaded:",fn))
+    }
+    cat(paste0("\nfinal data loaded('",out_dir,"')...\n"))
+    
   }
-  cat("\nfinal data loaded ('data/out')...\n\n")
+
    
   #_______________________________________
   # Load ROMSNPZ covariates:

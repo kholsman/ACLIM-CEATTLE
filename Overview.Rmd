@@ -131,26 +131,30 @@ The first step is to run the make.R script to load the data, packages, and setup
 ```{r EBM_paper, echo=TRUE, eval=FALSE}
     
     # set your local path:
-    # main        <-  file.path(download_path,"EBM_Holsman_NatComm/")
+    # main        <-  file.path(download_path,"ACLIM-CEATTLE/")
     # e.g., main  <-  getwd()
     setwd(main)
     
     # load data, packages, setup, etc.
     source("R/make.R")
-    
+
     # preview the simulation file:
     head(sim_msm)
     
     # select subset of data for analyses:
-  # sub <- sim_msm%>%
-  #   filter(recMode==rset,hMode%in%rfset, Scenario==scn)
+    # sub <- sim_msm%>%
+    #   filter(recMode==rset,hMode%in%rfset, Scenario==scn)
 
+    cmip5 <- simset[]
+      
+      
     
-    dat_2_5_3  <- sim_msm%>%filter(recMode==as.character(rset),hMode=="3", is.na(MC_n)==T)
-    dat_2_5_12 <- sim_msm%>%filter(recMode==as.character(rset),hMode=="12", is.na(MC_n)==T)
-    dat_2_5_13 <- sim_msm%>%filter(recMode==as.character(rset),hMode=="13", is.na(MC_n)==T)
+    dat_2_5_3     <- sim_msm%>%filter(recMode==as.character(rset),hMode=="3",  is.na(MC_n)==T)
+    dat_2_5_12    <- sim_msm%>%filter(recMode==as.character(rset),hMode=="12", is.na(MC_n)==T)
+    dat_2_5_13    <- sim_msm%>%filter(recMode==as.character(rset),hMode=="13", is.na(MC_n)==T)
+    dat_2_5_3_mc  <- sim_msm%>%filter(recMode==as.character(rset),hMode=="3",  MC_n>0)
     
-    dat2       <- as_tibble(dat_2_5_3)%>%filter(age==1,!hModev2%in%c("H12_259_cf","H12_219_mnFcf","H12_259_CENaivecf"))
+    dat2          <- as_tibble(dat_2_5_3)%>%filter(age==1,!hModev2%in%c("H12_259_cf","H12_219_mnFcf","H12_259_CENaivecf"))
     unique(dat2$hModev2)
     dat2$legend<-""
     for(i in 1:dim(run_def)[1]){

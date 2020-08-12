@@ -47,7 +47,7 @@
   # set up switches
   # ----------------------------------------
       nspp        <-   3
-      hcrset      <- 1.8     # Set the control rule to find B40 under no climate
+      hcrset      <- 1.8     # Set the control rule to find B40 under no climate, setting atf to mean F then solving for B40
       rec_listIN  <- c(1,6,5,7,2)
       mode_listIN <- c(0,2)
       hcr_listIN  <- c(1,3,12,13)

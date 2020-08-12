@@ -25,9 +25,10 @@
                          "sim_msm.Rdata",
                          "sim_ssm.Rdata",
                          "multispp_nocap_simulations.Rdata")
-    outfn            <- c("Biomass_thresholds.Rdata",
-                         "Catch_thresholds.Rdata",
-                         "risk.Rdata")
+    outfn            <- c("ssm_noCap","ssm_noCapMC",
+                          "ssm_2mtCap","ssm_2mtCapMC",
+                          "msm_noCap","msm_noCapMC",
+                          "msm_2mtCap","msm_2mtCapMC")
               
     
   # Some settings for which scenarios to evaluate:
@@ -116,7 +117,7 @@
     wes     <- colorRampPalette(c(wes_palette(n=5, name=plt[1])[1:5]))
     col1     <- colorRampPalette(colors()[c(280,320)])
     #col2     <- colorRampPalette(colors()[c(70,491)])
-    col2     <- colorRampPalette(colors()[c(114,491)])
+    col2    <- colorRampPalette(colors()[c(114,491)])
     col2    <- colorRampPalette(c(wes(7)[c(3,1)],col2(3)[3]))
     col3    <- colorRampPalette(c(wes(7)[4:7]))
     
