@@ -206,7 +206,9 @@ NOAA Fisheries, Seattle WA<br />
 </div>
 <div id="climate-scenarios" class="section level2">
 <h2>1.2 Climate scenarios</h2>
-<p>The simulations include the model fit to data from 1979 - 2017 and projections derived from ACLIM suite of CMIP5 downscaled projections under various representative concentration pathways:</p>
+<p>The simulations include the model fit to data from 1979 - 2017 and projections derived from ACLIM suite of CMIP5 downscaled projections under various representative concentration pathways (note bold scenarios are those included in the Holsman et al. 2020 paper):</p>
+<div id="table-1-climate-scenarios" class="section level3">
+<h3>Table 1: Climate scenarios:</h3>
 <table>
 <thead>
 <tr class="header">
@@ -215,7 +217,7 @@ NOAA Fisheries, Seattle WA<br />
 <th>Scenario</th>
 <th>Def</th>
 <th>Years</th>
-<th>Model</th>
+<th>ROMSNPZ Model</th>
 <th>Source</th>
 </tr>
 </thead>
@@ -227,7 +229,7 @@ NOAA Fisheries, Seattle WA<br />
 <td>ACLIM Hindcast</td>
 <td>1970 - 2017</td>
 <td>H16</td>
-<td>ACLIM/RTAP</td>
+<td>ACLIM</td>
 </tr>
 <tr class="even">
 <td>na</td>
@@ -275,7 +277,7 @@ NOAA Fisheries, Seattle WA<br />
 <td>ACLIM/FATE</td>
 </tr>
 <tr class="odd">
-<td>CMIP5 AR5</td>
+<td><strong>CMIP5 AR5</strong></td>
 <td>MIROC</td>
 <td>RCP 4.5</td>
 <td>Med. mitigation</td>
@@ -284,7 +286,7 @@ NOAA Fisheries, Seattle WA<br />
 <td>ACLIM/FATE</td>
 </tr>
 <tr class="even">
-<td>CMIP5 AR5</td>
+<td><strong>CMIP5 AR5</strong></td>
 <td>CESM</td>
 <td>RCP 4.5</td>
 <td>Med. mitigation</td>
@@ -293,7 +295,7 @@ NOAA Fisheries, Seattle WA<br />
 <td>ACLIM/FATE</td>
 </tr>
 <tr class="odd">
-<td>CMIP5 AR5</td>
+<td><strong>CMIP5 AR5</strong></td>
 <td>GFDL</td>
 <td>RCP 8.5</td>
 <td>High baseline</td>
@@ -302,16 +304,7 @@ NOAA Fisheries, Seattle WA<br />
 <td>ACLIM/FATE</td>
 </tr>
 <tr class="even">
-<td>CMIP5 AR5</td>
-<td>GFDL</td>
-<td>RCP 8.5bio*</td>
-<td>High baseline</td>
-<td>2006 - 2100</td>
-<td>H16</td>
-<td>ACLIM/FATE</td>
-</tr>
-<tr class="odd">
-<td>CMIP5 AR5</td>
+<td><strong>CMIP5 AR5</strong></td>
 <td>MIROC</td>
 <td>RCP 8.5</td>
 <td>High baseline</td>
@@ -319,8 +312,8 @@ NOAA Fisheries, Seattle WA<br />
 <td>H16</td>
 <td>ACLIM/FATE</td>
 </tr>
-<tr class="even">
-<td>CMIP5 AR5</td>
+<tr class="odd">
+<td><strong>CMIP5 AR5</strong></td>
 <td>CESM</td>
 <td>RCP 8.5</td>
 <td>High baseline</td>
@@ -328,12 +321,21 @@ NOAA Fisheries, Seattle WA<br />
 <td>H16</td>
 <td>ACLIM/FATE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>CMIP5 AR5</td>
 <td>CESM</td>
 <td>RCP 8.5bio*</td>
 <td>High baseline</td>
 <td>2006 - 2080</td>
+<td>H16</td>
+<td>ACLIM/FATE</td>
+</tr>
+<tr class="odd">
+<td>CMIP5 AR5</td>
+<td>GFDL</td>
+<td>RCP 8.5bio*</td>
+<td>High baseline</td>
+<td>2006 - 2100</td>
 <td>H16</td>
 <td>ACLIM/FATE</td>
 </tr>
@@ -341,32 +343,120 @@ NOAA Fisheries, Seattle WA<br />
 </table>
 <p>For more information about the downscaling models underpinning these simulations see Hermann et al. 2016,2019 and Kearney et al. 2020.</p>
 </div>
+</div>
 <div id="ceattle-trophic-and-harvest-scenarios" class="section level2">
 <h2>1.3 CEATTLE trophic and harvest scenarios:</h2>
-<table>
+<p>Included in the simulation set below (see code) are 4 core simulations as part of the Holsman et al. 2020 Nature Communications paper. Those are summarized as:</p>
+<div id="table-2-managment-and-model-scenarios" class="section level3">
+<h3>Table 2: Managment and model scenarios:</h3>
+<table style="width:100%;">
+<colgroup>
+<col width="20%"></col>
+<col width="8%"></col>
+<col width="16%"></col>
+<col width="12%"></col>
+<col width="13%"></col>
+<col width="12%"></col>
+<col width="9%"></col>
+<col width="6%"></col>
+</colgroup>
 <thead>
 <tr class="header">
-<th>simulation</th>
+<th>Simulation</th>
 <th>Trophic</th>
 <th>HCR</th>
-<th>Catch</th>
+<th>Harvest Scenario</th>
 <th>Recruitment</th>
 <th>Model</th>
 <th>Source</th>
+<th>MC</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>xxx</td>
-<td>Yes</td>
-<td>CE-B40,CNaive B0</td>
+<td>ssm_noCap</td>
+<td>No</td>
+<td>CNaive B0 &amp; B40, CE-SL_HCR</td>
 <td>C = ABC</td>
-<td>ricker + SST</td>
+<td>ricker + covars</td>
 <td>CEATTLE</td>
-<td>ACLIM/RTAP</td>
+<td>ACLIM</td>
+<td>no (mean)</td>
+</tr>
+<tr class="even">
+<td>msm_noCap</td>
+<td>Yes</td>
+<td>CNaive B0 &amp; B40, CE-SL_HCR</td>
+<td>C = ABC</td>
+<td>ricker + covars</td>
+<td>CEATTLE</td>
+<td>ACLIM</td>
+<td>no (mean)</td>
+</tr>
+<tr class="odd">
+<td>ssm_2mtCap</td>
+<td>No</td>
+<td>CNaive B0 &amp; B40, CE-SL_HCR</td>
+<td>C = ATTACH (f~ABC)</td>
+<td>ricker + covars</td>
+<td>CEATTLE</td>
+<td>ACLIM</td>
+<td>no (mean)</td>
+</tr>
+<tr class="even">
+<td>msm_2mtCap</td>
+<td>Yes</td>
+<td>CNaive B0 &amp; B40, CE-SL_HCR</td>
+<td>C = ATTACH (f~ABC)</td>
+<td>ricker + covars</td>
+<td>CEATTLE</td>
+<td>ACLIM</td>
+<td>no (mean)</td>
+</tr>
+<tr class="odd">
+<td>ssm_noCapMC</td>
+<td>No</td>
+<td>CNaive B0 &amp; B40, CE-SL_HCR</td>
+<td>C = ABC</td>
+<td>ricker + covars</td>
+<td>CEATTLE</td>
+<td>ACLIM</td>
+<td>1-100</td>
+</tr>
+<tr class="even">
+<td>msm_noCapMC</td>
+<td>Yes</td>
+<td>CNaive B0 &amp; B40, CE-SL_HCR</td>
+<td>C = ABC</td>
+<td>ricker + covars</td>
+<td>CEATTLE</td>
+<td>ACLIM</td>
+<td>1-100</td>
+</tr>
+<tr class="odd">
+<td>ssm_2mtCapMC</td>
+<td>No</td>
+<td>CNaive B0 &amp; B40, CE-SL_HCR</td>
+<td>C = ATTACH (f~ABC)</td>
+<td>ricker + covars</td>
+<td>CEATTLE</td>
+<td>ACLIM</td>
+<td>1-100</td>
+</tr>
+<tr class="even">
+<td>msm_2mtCapMC</td>
+<td>Yes</td>
+<td>CNaive B0 &amp; B40, CE-SL_HCR</td>
+<td>C = ATTACH (f~ABC)</td>
+<td>ricker + covars</td>
+<td>CEATTLE</td>
+<td>ACLIM</td>
+<td>1-31</td>
 </tr>
 </tbody>
 </table>
+<p>Where “Trophic” indicates if multispecies interactions where included (i.e., single or multispecies modes); “HCR” is the approach to the harvest control rule indicating whether reference points (B0 and B40) and the sloping harvest control rule (SL_HCR) were determined from persistence scenarios (i.e., climate naive or ‘CNaive’) or from scenarios with climate acting on growth, predation, and recruitment (i.e., climate-enhanced or ‘CE’); the harvest scenario applied (i.e., Catch = ABC or Catch is a function of TAC and ABC via the ATTACH() model); Recruitment relationship; the multispecies model used, the source of the simulations, and whether the simulations include random draws from the recruitment relationship parameters (MC&gt;0).</p>
+</div>
 </div>
 <div id="getting-started" class="section level1">
 <h1>2 Getting started:</h1>
@@ -418,7 +508,10 @@ NOAA Fisheries, Seattle WA<br />
     # preview the simulation file:
     head(msm_noCapMC)
     
-   # plot Catch from the multispecies run without the cap (catch == ABC):
+  #------------------------------------------------------------------    
+  # plot Catch from the multispecies run without the cap (catch == ABC):
+  #------------------------------------------------------------------
+  
    dat2          &lt;- as_tibble(msm_noCap)%&gt;%filter(age==1)
     unique(dat2$hModev2)
     dat2$legend&lt;-&quot;&quot;
@@ -436,8 +529,11 @@ NOAA Fisheries, Seattle WA<br />
       geom_line(aes(x=future_year,y=Catch_total_biom,color=Scenario)) +
       facet_grid(spp~factor(hModev2),scales=&quot;free_y&quot;)+
       theme_minimal()
-
-    # plot Catch from the multispecies run with the cap (catch == ABC):
+    
+    
+  #------------------------------------------------------------------
+  # plot Catch from the multispecies run with the cap (catch == ABC):
+  #------------------------------------------------------------------
    dat2          &lt;- as_tibble(msm_2mtCap)%&gt;%filter(age==1)
     unique(dat2$hModev2)
     dat2$legend&lt;-&quot;&quot;

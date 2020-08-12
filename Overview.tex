@@ -148,15 +148,20 @@ et al. 2020}.
 
 The simulations include the model fit to data from 1979 - 2017 and
 projections derived from ACLIM suite of CMIP5 downscaled projections
-under various representative concentration pathways:
+under various representative concentration pathways (note bold scenarios
+are those included in the Holsman et al. 2020 paper):
+
+\subsubsection{Table 1: Climate
+scenarios:}\label{table-1-climate-scenarios}
 
 \begin{longtable}[]{@{}lllllll@{}}
 \toprule
-CMIPx ARx & GCM & Scenario & Def & Years & Model & Source\tabularnewline
+CMIPx ARx & GCM & Scenario & Def & Years & ROMSNPZ Model &
+Source\tabularnewline
 \midrule
 \endhead
 na & CORECFS & hindcast & ACLIM Hindcast & 1970 - 2017 & H16 &
-ACLIM/RTAP\tabularnewline
+ACLIM\tabularnewline
 na & CORECFS & Persistence & Avg. 10 y hind. & 2018 - 2100 & H16 &
 ACLIM\tabularnewline
 CMIP3 AR4 & MIROC & A1B & Med baseline & 2006 - 2048 & H16 &
@@ -167,19 +172,19 @@ CMIP3 AR4 & CCCMA & A1B & Med baseline & 2006 - 2048 & H16 &
 BSIERP\tabularnewline
 CMIP5 AR5 & GFDL & RCP 4.5 & Med. mitigation & 2006 - 2100 & H16 &
 ACLIM/FATE\tabularnewline
-CMIP5 AR5 & MIROC & RCP 4.5 & Med. mitigation & 2006 - 2100 & H16 &
-ACLIM/FATE\tabularnewline
-CMIP5 AR5 & CESM & RCP 4.5 & Med. mitigation & 2006 - 2100 & H16 &
-ACLIM/FATE\tabularnewline
-CMIP5 AR5 & GFDL & RCP 8.5 & High baseline & 2006 - 2100 & H16 &
+\textbf{CMIP5 AR5} & MIROC & RCP 4.5 & Med. mitigation & 2006 - 2100 &
+H16 & ACLIM/FATE\tabularnewline
+\textbf{CMIP5 AR5} & CESM & RCP 4.5 & Med. mitigation & 2006 - 2100 &
+H16 & ACLIM/FATE\tabularnewline
+\textbf{CMIP5 AR5} & GFDL & RCP 8.5 & High baseline & 2006 - 2100 & H16
+& ACLIM/FATE\tabularnewline
+\textbf{CMIP5 AR5} & MIROC & RCP 8.5 & High baseline & 2006 - 2100 & H16
+& ACLIM/FATE\tabularnewline
+\textbf{CMIP5 AR5} & CESM & RCP 8.5 & High baseline & 2006 - 2080 & H16
+& ACLIM/FATE\tabularnewline
+CMIP5 AR5 & CESM & RCP 8.5bio* & High baseline & 2006 - 2080 & H16 &
 ACLIM/FATE\tabularnewline
 CMIP5 AR5 & GFDL & RCP 8.5bio* & High baseline & 2006 - 2100 & H16 &
-ACLIM/FATE\tabularnewline
-CMIP5 AR5 & MIROC & RCP 8.5 & High baseline & 2006 - 2100 & H16 &
-ACLIM/FATE\tabularnewline
-CMIP5 AR5 & CESM & RCP 8.5 & High baseline & 2006 - 2080 & H16 &
-ACLIM/FATE\tabularnewline
-CMIP5 AR5 & CESM & RCP 8.5bio* & High baseline & 2006 - 2080 & H16 &
 ACLIM/FATE\tabularnewline
 \bottomrule
 \end{longtable}
@@ -190,16 +195,184 @@ simulations see Hermann et al. 2016,2019 and Kearney et al. 2020.
 \subsection{1.3 CEATTLE trophic and harvest
 scenarios:}\label{ceattle-trophic-and-harvest-scenarios}
 
-\begin{longtable}[]{@{}lllllll@{}}
+Included in the simulation set below (see code) are 4 core simulations
+as part of the Holsman et al. 2020 Nature Communications paper. Those
+are summarized as:
+
+\subsubsection{Table 2: Managment and model
+scenarios:}\label{table-2-managment-and-model-scenarios}
+
+\begin{longtable}[]{@{}llllllll@{}}
 \toprule
-simulation & Trophic & HCR & Catch & Recruitment & Model &
-Source\tabularnewline
+\begin{minipage}[b]{0.16\columnwidth}\raggedright\strut
+Simulation\strut
+\end{minipage} & \begin{minipage}[b]{0.06\columnwidth}\raggedright\strut
+Trophic\strut
+\end{minipage} & \begin{minipage}[b]{0.13\columnwidth}\raggedright\strut
+HCR\strut
+\end{minipage} & \begin{minipage}[b]{0.10\columnwidth}\raggedright\strut
+Harvest Scenario\strut
+\end{minipage} & \begin{minipage}[b]{0.11\columnwidth}\raggedright\strut
+Recruitment\strut
+\end{minipage} & \begin{minipage}[b]{0.10\columnwidth}\raggedright\strut
+Model\strut
+\end{minipage} & \begin{minipage}[b]{0.08\columnwidth}\raggedright\strut
+Source\strut
+\end{minipage} & \begin{minipage}[b]{0.05\columnwidth}\raggedright\strut
+MC\strut
+\end{minipage}\tabularnewline
 \midrule
 \endhead
-xxx & Yes & CE-B40,CNaive B0 & C = ABC & ricker + SST & CEATTLE &
-ACLIM/RTAP\tabularnewline
+\begin{minipage}[t]{0.16\columnwidth}\raggedright\strut
+ssm\_noCap\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedright\strut
+No\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\raggedright\strut
+CNaive B0 \& B40, CE-SL\_HCR\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright\strut
+C = ABC\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\raggedright\strut
+ricker + covars\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright\strut
+CEATTLE\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\raggedright\strut
+ACLIM\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+no (mean)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.16\columnwidth}\raggedright\strut
+msm\_noCap\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedright\strut
+Yes\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\raggedright\strut
+CNaive B0 \& B40, CE-SL\_HCR\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright\strut
+C = ABC\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\raggedright\strut
+ricker + covars\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright\strut
+CEATTLE\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\raggedright\strut
+ACLIM\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+no (mean)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.16\columnwidth}\raggedright\strut
+ssm\_2mtCap\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedright\strut
+No\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\raggedright\strut
+CNaive B0 \& B40, CE-SL\_HCR\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright\strut
+C = ATTACH (f\textasciitilde{}ABC)\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\raggedright\strut
+ricker + covars\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright\strut
+CEATTLE\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\raggedright\strut
+ACLIM\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+no (mean)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.16\columnwidth}\raggedright\strut
+msm\_2mtCap\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedright\strut
+Yes\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\raggedright\strut
+CNaive B0 \& B40, CE-SL\_HCR\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright\strut
+C = ATTACH (f\textasciitilde{}ABC)\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\raggedright\strut
+ricker + covars\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright\strut
+CEATTLE\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\raggedright\strut
+ACLIM\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+no (mean)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.16\columnwidth}\raggedright\strut
+ssm\_noCapMC\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedright\strut
+No\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\raggedright\strut
+CNaive B0 \& B40, CE-SL\_HCR\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright\strut
+C = ABC\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\raggedright\strut
+ricker + covars\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright\strut
+CEATTLE\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\raggedright\strut
+ACLIM\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+1-100\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.16\columnwidth}\raggedright\strut
+msm\_noCapMC\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedright\strut
+Yes\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\raggedright\strut
+CNaive B0 \& B40, CE-SL\_HCR\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright\strut
+C = ABC\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\raggedright\strut
+ricker + covars\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright\strut
+CEATTLE\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\raggedright\strut
+ACLIM\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+1-100\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.16\columnwidth}\raggedright\strut
+ssm\_2mtCapMC\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedright\strut
+No\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\raggedright\strut
+CNaive B0 \& B40, CE-SL\_HCR\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright\strut
+C = ATTACH (f\textasciitilde{}ABC)\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\raggedright\strut
+ricker + covars\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright\strut
+CEATTLE\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\raggedright\strut
+ACLIM\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+1-100\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.16\columnwidth}\raggedright\strut
+msm\_2mtCapMC\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\raggedright\strut
+Yes\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\raggedright\strut
+CNaive B0 \& B40, CE-SL\_HCR\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright\strut
+C = ATTACH (f\textasciitilde{}ABC)\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\raggedright\strut
+ricker + covars\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\raggedright\strut
+CEATTLE\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\raggedright\strut
+ACLIM\strut
+\end{minipage} & \begin{minipage}[t]{0.05\columnwidth}\raggedright\strut
+1-31\strut
+\end{minipage}\tabularnewline
 \bottomrule
 \end{longtable}
+
+Where ``Trophic'' indicates if multispecies interactions where included
+(i.e., single or multispecies modes); ``HCR'' is the approach to the
+harvest control rule indicating whether reference points (B0 and B40)
+and the sloping harvest control rule (SL\_HCR) were determined from
+persistence scenarios (i.e., climate naive or `CNaive') or from
+scenarios with climate acting on growth, predation, and recruitment
+(i.e., climate-enhanced or `CE'); the harvest scenario applied (i.e.,
+Catch = ABC or Catch is a function of TAC and ABC via the ATTACH()
+model); Recruitment relationship; the multispecies model used, the
+source of the simulations, and whether the simulations include random
+draws from the recruitment relationship parameters (MC\textgreater{}0).
 
 \section{2 Getting started:}\label{getting-started}
 
@@ -273,7 +446,10 @@ those packages can be found in `EBM\_Holsman\_NatComm/R/packages.R'.}
     \CommentTok{# preview the simulation file:}
     \KeywordTok{head}\NormalTok{(msm_noCapMC)}
     
-   \CommentTok{# plot Catch from the multispecies run without the cap (catch == ABC):}
+  \CommentTok{#------------------------------------------------------------------    }
+  \CommentTok{# plot Catch from the multispecies run without the cap (catch == ABC):}
+  \CommentTok{#------------------------------------------------------------------}
+  
    \NormalTok{dat2          <-}\StringTok{ }\KeywordTok{as_tibble}\NormalTok{(msm_noCap)%>%}\KeywordTok{filter}\NormalTok{(age==}\DecValTok{1}\NormalTok{)}
     \KeywordTok{unique}\NormalTok{(dat2$hModev2)}
     \NormalTok{dat2$legend<-}\StringTok{""}
@@ -291,8 +467,11 @@ those packages can be found in `EBM\_Holsman\_NatComm/R/packages.R'.}
 \StringTok{      }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{future_year,}\DataTypeTok{y=}\NormalTok{Catch_total_biom,}\DataTypeTok{color=}\NormalTok{Scenario)) +}
 \StringTok{      }\KeywordTok{facet_grid}\NormalTok{(spp~}\KeywordTok{factor}\NormalTok{(hModev2),}\DataTypeTok{scales=}\StringTok{"free_y"}\NormalTok{)+}
 \StringTok{      }\KeywordTok{theme_minimal}\NormalTok{()}
-
-    \CommentTok{# plot Catch from the multispecies run with the cap (catch == ABC):}
+    
+    
+  \CommentTok{#------------------------------------------------------------------}
+  \CommentTok{# plot Catch from the multispecies run with the cap (catch == ABC):}
+  \CommentTok{#------------------------------------------------------------------}
    \NormalTok{dat2          <-}\StringTok{ }\KeywordTok{as_tibble}\NormalTok{(msm_2mtCap)%>%}\KeywordTok{filter}\NormalTok{(age==}\DecValTok{1}\NormalTok{)}
     \KeywordTok{unique}\NormalTok{(dat2$hModev2)}
     \NormalTok{dat2$legend<-}\StringTok{""}

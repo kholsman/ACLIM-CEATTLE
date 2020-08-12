@@ -25,32 +25,143 @@ Various simulation outputs were made available for use in this analysis through 
 1.2 Climate scenarios
 ---------------------
 
-The simulations include the model fit to data from 1979 - 2017 and projections derived from ACLIM suite of CMIP5 downscaled projections under various representative concentration pathways:
+The simulations include the model fit to data from 1979 - 2017 and projections derived from ACLIM suite of CMIP5 downscaled projections under various representative concentration pathways (note bold scenarios are those included in the Holsman et al. 2020 paper):
 
-| CMIPx ARx | GCM     | Scenario     | Def             | Years       | Model | Source     |
-|-----------|---------|--------------|-----------------|-------------|-------|------------|
-| na        | CORECFS | hindcast     | ACLIM Hindcast  | 1970 - 2017 | H16   | ACLIM/RTAP |
-| na        | CORECFS | Persistence  | Avg. 10 y hind. | 2018 - 2100 | H16   | ACLIM      |
-| CMIP3 AR4 | MIROC   | A1B          | Med baseline    | 2006 - 2048 | H16   | BSIERP     |
-| CMIP3 AR4 | ECHOG   | A1B          | Med baseline    | 2006 - 2048 | H16   | BSIERP     |
-| CMIP3 AR4 | CCCMA   | A1B          | Med baseline    | 2006 - 2048 | H16   | BSIERP     |
-| CMIP5 AR5 | GFDL    | RCP 4.5      | Med. mitigation | 2006 - 2100 | H16   | ACLIM/FATE |
-| CMIP5 AR5 | MIROC   | RCP 4.5      | Med. mitigation | 2006 - 2100 | H16   | ACLIM/FATE |
-| CMIP5 AR5 | CESM    | RCP 4.5      | Med. mitigation | 2006 - 2100 | H16   | ACLIM/FATE |
-| CMIP5 AR5 | GFDL    | RCP 8.5      | High baseline   | 2006 - 2100 | H16   | ACLIM/FATE |
-| CMIP5 AR5 | GFDL    | RCP 8.5bio\* | High baseline   | 2006 - 2100 | H16   | ACLIM/FATE |
-| CMIP5 AR5 | MIROC   | RCP 8.5      | High baseline   | 2006 - 2100 | H16   | ACLIM/FATE |
-| CMIP5 AR5 | CESM    | RCP 8.5      | High baseline   | 2006 - 2080 | H16   | ACLIM/FATE |
-| CMIP5 AR5 | CESM    | RCP 8.5bio\* | High baseline   | 2006 - 2080 | H16   | ACLIM/FATE |
+### Table 1: Climate scenarios:
+
+| CMIPx ARx     | GCM     | Scenario     | Def             | Years       | ROMSNPZ Model | Source     |
+|---------------|---------|--------------|-----------------|-------------|---------------|------------|
+| na            | CORECFS | hindcast     | ACLIM Hindcast  | 1970 - 2017 | H16           | ACLIM      |
+| na            | CORECFS | Persistence  | Avg. 10 y hind. | 2018 - 2100 | H16           | ACLIM      |
+| CMIP3 AR4     | MIROC   | A1B          | Med baseline    | 2006 - 2048 | H16           | BSIERP     |
+| CMIP3 AR4     | ECHOG   | A1B          | Med baseline    | 2006 - 2048 | H16           | BSIERP     |
+| CMIP3 AR4     | CCCMA   | A1B          | Med baseline    | 2006 - 2048 | H16           | BSIERP     |
+| CMIP5 AR5     | GFDL    | RCP 4.5      | Med. mitigation | 2006 - 2100 | H16           | ACLIM/FATE |
+| **CMIP5 AR5** | MIROC   | RCP 4.5      | Med. mitigation | 2006 - 2100 | H16           | ACLIM/FATE |
+| **CMIP5 AR5** | CESM    | RCP 4.5      | Med. mitigation | 2006 - 2100 | H16           | ACLIM/FATE |
+| **CMIP5 AR5** | GFDL    | RCP 8.5      | High baseline   | 2006 - 2100 | H16           | ACLIM/FATE |
+| **CMIP5 AR5** | MIROC   | RCP 8.5      | High baseline   | 2006 - 2100 | H16           | ACLIM/FATE |
+| **CMIP5 AR5** | CESM    | RCP 8.5      | High baseline   | 2006 - 2080 | H16           | ACLIM/FATE |
+| CMIP5 AR5     | CESM    | RCP 8.5bio\* | High baseline   | 2006 - 2080 | H16           | ACLIM/FATE |
+| CMIP5 AR5     | GFDL    | RCP 8.5bio\* | High baseline   | 2006 - 2100 | H16           | ACLIM/FATE |
 
 For more information about the downscaling models underpinning these simulations see Hermann et al. 2016,2019 and Kearney et al. 2020.
 
 1.3 CEATTLE trophic and harvest scenarios:
 ------------------------------------------
 
-| simulation | Trophic | HCR              | Catch   | Recruitment  | Model   | Source     |
-|------------|---------|------------------|---------|--------------|---------|------------|
-| xxx        | Yes     | CE-B40,CNaive B0 | C = ABC | ricker + SST | CEATTLE | ACLIM/RTAP |
+Included in the simulation set below (see code) are 4 core simulations as part of the Holsman et al. 2020 Nature Communications paper. Those are summarized as:
+
+### Table 2: Managment and model scenarios:
+
+<table style="width:100%;">
+<colgroup>
+<col width="20%" />
+<col width="8%" />
+<col width="16%" />
+<col width="12%" />
+<col width="13%" />
+<col width="12%" />
+<col width="9%" />
+<col width="6%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Simulation</th>
+<th>Trophic</th>
+<th>HCR</th>
+<th>Harvest Scenario</th>
+<th>Recruitment</th>
+<th>Model</th>
+<th>Source</th>
+<th>MC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ssm_noCap</td>
+<td>No</td>
+<td>CNaive B0 &amp; B40, CE-SL_HCR</td>
+<td>C = ABC</td>
+<td>ricker + covars</td>
+<td>CEATTLE</td>
+<td>ACLIM</td>
+<td>no (mean)</td>
+</tr>
+<tr class="even">
+<td>msm_noCap</td>
+<td>Yes</td>
+<td>CNaive B0 &amp; B40, CE-SL_HCR</td>
+<td>C = ABC</td>
+<td>ricker + covars</td>
+<td>CEATTLE</td>
+<td>ACLIM</td>
+<td>no (mean)</td>
+</tr>
+<tr class="odd">
+<td>ssm_2mtCap</td>
+<td>No</td>
+<td>CNaive B0 &amp; B40, CE-SL_HCR</td>
+<td>C = ATTACH (f~ABC)</td>
+<td>ricker + covars</td>
+<td>CEATTLE</td>
+<td>ACLIM</td>
+<td>no (mean)</td>
+</tr>
+<tr class="even">
+<td>msm_2mtCap</td>
+<td>Yes</td>
+<td>CNaive B0 &amp; B40, CE-SL_HCR</td>
+<td>C = ATTACH (f~ABC)</td>
+<td>ricker + covars</td>
+<td>CEATTLE</td>
+<td>ACLIM</td>
+<td>no (mean)</td>
+</tr>
+<tr class="odd">
+<td>ssm_noCapMC</td>
+<td>No</td>
+<td>CNaive B0 &amp; B40, CE-SL_HCR</td>
+<td>C = ABC</td>
+<td>ricker + covars</td>
+<td>CEATTLE</td>
+<td>ACLIM</td>
+<td>1-100</td>
+</tr>
+<tr class="even">
+<td>msm_noCapMC</td>
+<td>Yes</td>
+<td>CNaive B0 &amp; B40, CE-SL_HCR</td>
+<td>C = ABC</td>
+<td>ricker + covars</td>
+<td>CEATTLE</td>
+<td>ACLIM</td>
+<td>1-100</td>
+</tr>
+<tr class="odd">
+<td>ssm_2mtCapMC</td>
+<td>No</td>
+<td>CNaive B0 &amp; B40, CE-SL_HCR</td>
+<td>C = ATTACH (f~ABC)</td>
+<td>ricker + covars</td>
+<td>CEATTLE</td>
+<td>ACLIM</td>
+<td>1-100</td>
+</tr>
+<tr class="even">
+<td>msm_2mtCapMC</td>
+<td>Yes</td>
+<td>CNaive B0 &amp; B40, CE-SL_HCR</td>
+<td>C = ATTACH (f~ABC)</td>
+<td>ricker + covars</td>
+<td>CEATTLE</td>
+<td>ACLIM</td>
+<td>1-31</td>
+</tr>
+</tbody>
+</table>
+
+Where "Trophic" indicates if multispecies interactions where included (i.e., single or multispecies modes); "HCR" is the approach to the harvest control rule indicating whether reference points (B0 and B40) and the sloping harvest control rule (SL\_HCR) were determined from persistence scenarios (i.e., climate naive or 'CNaive') or from scenarios with climate acting on growth, predation, and recruitment (i.e., climate-enhanced or 'CE'); the harvest scenario applied (i.e., Catch = ABC or Catch is a function of TAC and ABC via the ATTACH() model); Recruitment relationship; the multispecies model used, the source of the simulations, and whether the simulations include random draws from the recruitment relationship parameters (MC&gt;0).
 
 2 Getting started:
 ==================
@@ -113,7 +224,10 @@ The first step is to run the make.R script to load the data, packages, and setup
     # preview the simulation file:
     head(msm_noCapMC)
     
-   # plot Catch from the multispecies run without the cap (catch == ABC):
+  #------------------------------------------------------------------    
+  # plot Catch from the multispecies run without the cap (catch == ABC):
+  #------------------------------------------------------------------
+  
    dat2          <- as_tibble(msm_noCap)%>%filter(age==1)
     unique(dat2$hModev2)
     dat2$legend<-""
@@ -131,8 +245,11 @@ The first step is to run the make.R script to load the data, packages, and setup
       geom_line(aes(x=future_year,y=Catch_total_biom,color=Scenario)) +
       facet_grid(spp~factor(hModev2),scales="free_y")+
       theme_minimal()
-
-    # plot Catch from the multispecies run with the cap (catch == ABC):
+    
+    
+  #------------------------------------------------------------------
+  # plot Catch from the multispecies run with the cap (catch == ABC):
+  #------------------------------------------------------------------
    dat2          <- as_tibble(msm_2mtCap)%>%filter(age==1)
     unique(dat2$hModev2)
     dat2$legend<-""
