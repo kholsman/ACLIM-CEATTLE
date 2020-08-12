@@ -16,15 +16,13 @@
     #-------------------------------------------
     update.figs     <-  FALSE   # set to true to re-save figs
     update.inputs   <-  FALSE   
-    update.outputs  <-  FALSE   # overwrite the existing Rdatafiles in data/out
+    update.outputs  <-  TRUE   # overwrite the existing Rdatafiles in out_fn
     status          <-  TRUE   # print progress
     scaleIN         <-  1      # controls the ratio (relative scaling of window)
     dpiIN           <-  150    # dpi for figures (set to lower res for smaller file size- these will be about 3.5 MB)
     
-    infn            <- c("covariates.Rdata",
-                         "sim_msm.Rdata",
-                         "sim_ssm.Rdata",
-                         "multispp_nocap_simulations.Rdata")
+    infn            <- c("sim_msm.Rdata",
+                         "sim_ssm.Rdata")
     outfn            <- c("ssm_noCap","ssm_noCapMC",
                           "ssm_2mtCap","ssm_2mtCapMC",
                           "msm_noCap","msm_noCapMC",

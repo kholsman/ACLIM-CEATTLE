@@ -17,8 +17,8 @@ With permission, please also cite this data as:
 
 \[ TO ADD \]
 
-1.1 ACLM Overview
------------------
+1.1 ACLIM Overview
+------------------
 
 Various simulation outputs were made available for use in this analysis through the interdisciplinary [Alaska Climate Integrated Modeling (ACLIM) project](%22https://www.fisheries.noaa.gov/alaska/ecosystems/alaska-climate-integrated-modeling-project%22). An overview of the project and simulation experiments can be found in [Hollowed et al. 2020](%22https://www.frontiersin.org/articles/10.3389/fmars.2019.00775/full%22).
 
@@ -100,26 +100,19 @@ The first step is to run the make.R script to load the data, packages, and setup
 
 ``` r
     # set your local path:
-    # main        <-  file.path(download_path,"EBM_Holsman_NatComm/")
+    # main        <-  file.path(download_path,"ACLIM-CEATTLE/")
     # e.g., main  <-  getwd()
     setwd(main)
     
+    
     # load data, packages, setup, etc.
     source("R/make.R")
-    
-    # preview the simulation file:
-    head(sim_msm)
-    
-    # select subset of data for analyses:
-  # sub <- sim_msm%>%
-  #   filter(recMode==rset,hMode%in%rfset, Scenario==scn)
 
+    # preview the simulation file:
+    head(msm_noCapMC)
     
-    dat_2_5_3  <- sim_msm%>%filter(recMode==as.character(rset),hMode=="3", is.na(MC_n)==T)
-    dat_2_5_12 <- sim_msm%>%filter(recMode==as.character(rset),hMode=="12", is.na(MC_n)==T)
-    dat_2_5_13 <- sim_msm%>%filter(recMode==as.character(rset),hMode=="13", is.na(MC_n)==T)
-    
-    dat2       <- as_tibble(dat_2_5_3)%>%filter(age==1,!hModev2%in%c("H12_259_cf","H12_219_mnFcf","H12_259_CENaivecf"))
+   # plot Catch from the multispecies run without the cap (catch == ABC):
+   dat2          <- as_tibble(msm_noCap)%>%filter(age==1)
     unique(dat2$hModev2)
     dat2$legend<-""
     for(i in 1:dim(run_def)[1]){
@@ -130,8 +123,29 @@ The first step is to run the make.R script to load the data, packages, and setup
     }
     dat2$Scenario <- as.factor(Scenarios[dat2$Scenario])
     dat2$spp      <- factor(names(sppINFO)[dat2$species],levels=names(sppINFO))
+     
+    dev.new()
     ggplot(data=dat2) +
-      geom_line(aes(x=future_year,y=F,color=Scenario)) +
+      geom_line(aes(x=future_year,y=Catch_total_biom,color=Scenario)) +
+      facet_grid(spp~factor(hModev2),scales="free_y")+
+      theme_minimal()
+
+    # plot Catch from the multispecies run with the cap (catch == ABC):
+   dat2          <- as_tibble(msm_2mtCap)%>%filter(age==1)
+    unique(dat2$hModev2)
+    dat2$legend<-""
+    for(i in 1:dim(run_def)[1]){
+      tt <- grepl(run_def[i,]$`Run title`,dat2$hModev2,fixed=T)
+      if(any(tt)){
+        dat2[which(tt),]$legend <- run_def[i,]$Legend
+      }
+    }
+    dat2$Scenario <- as.factor(Scenarios[dat2$Scenario])
+    dat2$spp      <- factor(names(sppINFO)[dat2$species],levels=names(sppINFO))
+     
+    dev.new()
+    ggplot(data=dat2) +
+      geom_line(aes(x=future_year,y=Catch_total_biom,color=Scenario)) +
       facet_grid(spp~factor(hModev2),scales="free_y")+
       theme_minimal()
 ```

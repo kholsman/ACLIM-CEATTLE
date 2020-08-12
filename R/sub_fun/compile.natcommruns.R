@@ -50,7 +50,9 @@ compile.natcommruns <- function(out=out_dir,sims = c(rcp45_n,rcp85NoBio_n),Rin=5
                                     Scenario%in%sims)
   cat(paste0("Saving files in ",out,"\n"))
   
-  for(fn in savelist)
-    save(fn,file=file.path(out,paste0(fn,".Rdata")))
+  for(fn in savelist){
+    fnout <- file.path(out,paste0(fn,".Rdata"))
+    eval(parse(text=paste0("save(",fn,",file=fnout)")))
+  }
 
 }

@@ -134,7 +134,7 @@ With permission, please also cite this data as:
 
 {[} TO ADD {]}
 
-\subsection{1.1 ACLM Overview}\label{aclm-overview}
+\subsection{1.1 ACLIM Overview}\label{aclim-overview}
 
 Various simulation outputs were made available for use in this analysis
 through the interdisciplinary
@@ -259,26 +259,19 @@ those packages can be found in `EBM\_Holsman\_NatComm/R/packages.R'.}
 \begin{Shaded}
 \begin{Highlighting}[]
     \CommentTok{# set your local path:}
-    \CommentTok{# main        <-  file.path(download_path,"EBM_Holsman_NatComm/")}
+    \CommentTok{# main        <-  file.path(download_path,"ACLIM-CEATTLE/")}
     \CommentTok{# e.g., main  <-  getwd()}
     \KeywordTok{setwd}\NormalTok{(main)}
     
+    
     \CommentTok{# load data, packages, setup, etc.}
     \KeywordTok{source}\NormalTok{(}\StringTok{"R/make.R"}\NormalTok{)}
-    
-    \CommentTok{# preview the simulation file:}
-    \KeywordTok{head}\NormalTok{(sim_msm)}
-    
-    \CommentTok{# select subset of data for analyses:}
-  \CommentTok{# sub <- sim_msm%>%}
-  \CommentTok{#   filter(recMode==rset,hMode%in%rfset, Scenario==scn)}
 
+    \CommentTok{# preview the simulation file:}
+    \KeywordTok{head}\NormalTok{(msm_noCapMC)}
     
-    \NormalTok{dat_2_5_3  <-}\StringTok{ }\NormalTok{sim_msm%>%}\KeywordTok{filter}\NormalTok{(recMode==}\KeywordTok{as.character}\NormalTok{(rset),hMode==}\StringTok{"3"}\NormalTok{, }\KeywordTok{is.na}\NormalTok{(MC_n)==T)}
-    \NormalTok{dat_2_5_12 <-}\StringTok{ }\NormalTok{sim_msm%>%}\KeywordTok{filter}\NormalTok{(recMode==}\KeywordTok{as.character}\NormalTok{(rset),hMode==}\StringTok{"12"}\NormalTok{, }\KeywordTok{is.na}\NormalTok{(MC_n)==T)}
-    \NormalTok{dat_2_5_13 <-}\StringTok{ }\NormalTok{sim_msm%>%}\KeywordTok{filter}\NormalTok{(recMode==}\KeywordTok{as.character}\NormalTok{(rset),hMode==}\StringTok{"13"}\NormalTok{, }\KeywordTok{is.na}\NormalTok{(MC_n)==T)}
-    
-    \NormalTok{dat2       <-}\StringTok{ }\KeywordTok{as_tibble}\NormalTok{(dat_2_5_3)%>%}\KeywordTok{filter}\NormalTok{(age==}\DecValTok{1}\NormalTok{,!hModev2%in%}\KeywordTok{c}\NormalTok{(}\StringTok{"H12_259_cf"}\NormalTok{,}\StringTok{"H12_219_mnFcf"}\NormalTok{,}\StringTok{"H12_259_CENaivecf"}\NormalTok{))}
+   \CommentTok{# plot Catch from the multispecies run without the cap (catch == ABC):}
+   \NormalTok{dat2          <-}\StringTok{ }\KeywordTok{as_tibble}\NormalTok{(msm_noCap)%>%}\KeywordTok{filter}\NormalTok{(age==}\DecValTok{1}\NormalTok{)}
     \KeywordTok{unique}\NormalTok{(dat2$hModev2)}
     \NormalTok{dat2$legend<-}\StringTok{""}
     \NormalTok{for(i in }\DecValTok{1}\NormalTok{:}\KeywordTok{dim}\NormalTok{(run_def)[}\DecValTok{1}\NormalTok{])\{}
@@ -289,8 +282,29 @@ those packages can be found in `EBM\_Holsman\_NatComm/R/packages.R'.}
     \NormalTok{\}}
     \NormalTok{dat2$Scenario <-}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(Scenarios[dat2$Scenario])}
     \NormalTok{dat2$spp      <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(}\KeywordTok{names}\NormalTok{(sppINFO)[dat2$species],}\DataTypeTok{levels=}\KeywordTok{names}\NormalTok{(sppINFO))}
+     
+    \KeywordTok{dev.new}\NormalTok{()}
     \KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data=}\NormalTok{dat2) +}
-\StringTok{      }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{future_year,}\DataTypeTok{y=}\NormalTok{F,}\DataTypeTok{color=}\NormalTok{Scenario)) +}
+\StringTok{      }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{future_year,}\DataTypeTok{y=}\NormalTok{Catch_total_biom,}\DataTypeTok{color=}\NormalTok{Scenario)) +}
+\StringTok{      }\KeywordTok{facet_grid}\NormalTok{(spp~}\KeywordTok{factor}\NormalTok{(hModev2),}\DataTypeTok{scales=}\StringTok{"free_y"}\NormalTok{)+}
+\StringTok{      }\KeywordTok{theme_minimal}\NormalTok{()}
+
+    \CommentTok{# plot Catch from the multispecies run with the cap (catch == ABC):}
+   \NormalTok{dat2          <-}\StringTok{ }\KeywordTok{as_tibble}\NormalTok{(msm_2mtCap)%>%}\KeywordTok{filter}\NormalTok{(age==}\DecValTok{1}\NormalTok{)}
+    \KeywordTok{unique}\NormalTok{(dat2$hModev2)}
+    \NormalTok{dat2$legend<-}\StringTok{""}
+    \NormalTok{for(i in }\DecValTok{1}\NormalTok{:}\KeywordTok{dim}\NormalTok{(run_def)[}\DecValTok{1}\NormalTok{])\{}
+      \NormalTok{tt <-}\StringTok{ }\KeywordTok{grepl}\NormalTok{(run_def[i,]$}\StringTok{`}\DataTypeTok{Run title}\StringTok{`}\NormalTok{,dat2$hModev2,}\DataTypeTok{fixed=}\NormalTok{T)}
+      \NormalTok{if(}\KeywordTok{any}\NormalTok{(tt))\{}
+        \NormalTok{dat2[}\KeywordTok{which}\NormalTok{(tt),]$legend <-}\StringTok{ }\NormalTok{run_def[i,]$Legend}
+      \NormalTok{\}}
+    \NormalTok{\}}
+    \NormalTok{dat2$Scenario <-}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(Scenarios[dat2$Scenario])}
+    \NormalTok{dat2$spp      <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(}\KeywordTok{names}\NormalTok{(sppINFO)[dat2$species],}\DataTypeTok{levels=}\KeywordTok{names}\NormalTok{(sppINFO))}
+     
+    \KeywordTok{dev.new}\NormalTok{()}
+    \KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data=}\NormalTok{dat2) +}
+\StringTok{      }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{future_year,}\DataTypeTok{y=}\NormalTok{Catch_total_biom,}\DataTypeTok{color=}\NormalTok{Scenario)) +}
 \StringTok{      }\KeywordTok{facet_grid}\NormalTok{(spp~}\KeywordTok{factor}\NormalTok{(hModev2),}\DataTypeTok{scales=}\StringTok{"free_y"}\NormalTok{)+}
 \StringTok{      }\KeywordTok{theme_minimal}\NormalTok{()}
 \end{Highlighting}

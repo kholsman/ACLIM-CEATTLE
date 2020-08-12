@@ -201,8 +201,8 @@ NOAA Fisheries, Seattle WA<br />
 <p>With permission, please also cite this data as:</p>
 <p>[ TO ADD ]</p>
 </div>
-<div id="aclm-overview" class="section level2">
-<h2>1.1 ACLM Overview</h2>
+<div id="aclim-overview" class="section level2">
+<h2>1.1 ACLIM Overview</h2>
 <p>Various simulation outputs were made available for use in this analysis through the interdisciplinary <a href="%22https://www.fisheries.noaa.gov/alaska/ecosystems/alaska-climate-integrated-modeling-project%22">Alaska Climate Integrated Modeling (ACLIM) project</a>. An overview of the project and simulation experiments can be found in <a href="%22https://www.frontiersin.org/articles/10.3389/fmars.2019.00775/full%22">Hollowed et al. 2020</a>.</p>
 </div>
 <div id="climate-scenarios" class="section level2">
@@ -406,26 +406,19 @@ NOAA Fisheries, Seattle WA<br />
 <h2>3.1. Set things up:</h2>
 <p>The first step is to run the make.R script to load the data, packages, and setup (where various options are specified). Note that the scripts depend on a number of packages that will be installed the first time through running make.R if they are not already included. <em>A list of those packages can be found in ‘EBM_Holsman_NatComm/R/packages.R’.</em></p>
 <pre class="r"><code>    # set your local path:
-    # main        &lt;-  file.path(download_path,&quot;EBM_Holsman_NatComm/&quot;)
+    # main        &lt;-  file.path(download_path,&quot;ACLIM-CEATTLE/&quot;)
     # e.g., main  &lt;-  getwd()
     setwd(main)
     
+    
     # load data, packages, setup, etc.
     source(&quot;R/make.R&quot;)
-    
-    # preview the simulation file:
-    head(sim_msm)
-    
-    # select subset of data for analyses:
-  # sub &lt;- sim_msm%&gt;%
-  #   filter(recMode==rset,hMode%in%rfset, Scenario==scn)
 
+    # preview the simulation file:
+    head(msm_noCapMC)
     
-    dat_2_5_3  &lt;- sim_msm%&gt;%filter(recMode==as.character(rset),hMode==&quot;3&quot;, is.na(MC_n)==T)
-    dat_2_5_12 &lt;- sim_msm%&gt;%filter(recMode==as.character(rset),hMode==&quot;12&quot;, is.na(MC_n)==T)
-    dat_2_5_13 &lt;- sim_msm%&gt;%filter(recMode==as.character(rset),hMode==&quot;13&quot;, is.na(MC_n)==T)
-    
-    dat2       &lt;- as_tibble(dat_2_5_3)%&gt;%filter(age==1,!hModev2%in%c(&quot;H12_259_cf&quot;,&quot;H12_219_mnFcf&quot;,&quot;H12_259_CENaivecf&quot;))
+   # plot Catch from the multispecies run without the cap (catch == ABC):
+   dat2          &lt;- as_tibble(msm_noCap)%&gt;%filter(age==1)
     unique(dat2$hModev2)
     dat2$legend&lt;-&quot;&quot;
     for(i in 1:dim(run_def)[1]){
@@ -436,8 +429,29 @@ NOAA Fisheries, Seattle WA<br />
     }
     dat2$Scenario &lt;- as.factor(Scenarios[dat2$Scenario])
     dat2$spp      &lt;- factor(names(sppINFO)[dat2$species],levels=names(sppINFO))
+     
+    dev.new()
     ggplot(data=dat2) +
-      geom_line(aes(x=future_year,y=F,color=Scenario)) +
+      geom_line(aes(x=future_year,y=Catch_total_biom,color=Scenario)) +
+      facet_grid(spp~factor(hModev2),scales=&quot;free_y&quot;)+
+      theme_minimal()
+
+    # plot Catch from the multispecies run with the cap (catch == ABC):
+   dat2          &lt;- as_tibble(msm_2mtCap)%&gt;%filter(age==1)
+    unique(dat2$hModev2)
+    dat2$legend&lt;-&quot;&quot;
+    for(i in 1:dim(run_def)[1]){
+      tt &lt;- grepl(run_def[i,]$`Run title`,dat2$hModev2,fixed=T)
+      if(any(tt)){
+        dat2[which(tt),]$legend &lt;- run_def[i,]$Legend
+      }
+    }
+    dat2$Scenario &lt;- as.factor(Scenarios[dat2$Scenario])
+    dat2$spp      &lt;- factor(names(sppINFO)[dat2$species],levels=names(sppINFO))
+     
+    dev.new()
+    ggplot(data=dat2) +
+      geom_line(aes(x=future_year,y=Catch_total_biom,color=Scenario)) +
       facet_grid(spp~factor(hModev2),scales=&quot;free_y&quot;)+
       theme_minimal()</code></pre>
 </div>

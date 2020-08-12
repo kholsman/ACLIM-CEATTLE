@@ -17,11 +17,29 @@
   #load(file.path(in_dir,"simlist2.Rdata"))
   #load(file.path(in_dir,"empty2.Rdata"))
   run_def <- readxl::read_xlsx(file.path(in_dir,"Run_Defintions.xlsx"),sheet="Sheet1")
+  
   #_______________________________________
-  # Load simulations, risk calcs, and threshold results (or run these if not in folder):
+  # Load ROMSNPZ covariates:
   #_______________________________________
-
-  cat(paste0("\nLoading Intermediate data ('",in_dir,"')...\n"))
+  
+  load(file.path(in_dir,"covariates.Rdata"))
+  
+  Scenarios     <-  unique(covariates$Scenario)
+  A1B_n         <-  grep("A1B",Scenarios)
+  bio_n         <-  grep("bio",Scenarios)
+  rcp45_n       <-  grep("rcp45",Scenarios)
+  rcp85_n       <-  grep("rcp85",Scenarios)
+  rcp85NoBio_n  <-  setdiff(rcp85_n,bio_n)
+  plotList      <-  Scenario_set  <- c(1,rcp45_n,rcp85NoBio_n)
+  esnm          <-  list(c(rcp45_n,rcp85NoBio_n))
+  esmlist       <-  list(rcp45_n,rcp85NoBio_n)
+  
+  #_______________________________________
+  # Load simulations:
+  #_______________________________________
+  
+  if( update.outputs ){
+    cat(paste0("\nLoading Intermediate data ('",in_dir,"')...\n"))
     for(fn in infn){
       if(!any(dir(in_dir)%in%fn))
         stop(paste0(fn," file not found in: \t \t",in_dir,
@@ -30,46 +48,30 @@
       load(file.path(in_dir,fn))
       cat(paste("\nloaded",fn))
     }
-  cat(paste0("\nIntermediate data loaded  ('",in_dir,"')...\n"))
-  
-  if(!file.exists(out_dir)){
-    dir.create(out_dir)
+    cat(paste0("\nIntermediate data loaded  ('",in_dir,"')...\n"))
+    
+    if(!file.exists(out_dir))
+      dir.create(out_dir)
     compile.natcommruns(out=out_dir,savelist= outfn)
-  }else{
+    update.outputs  <-  FALSE
+  }
     cat(paste0("\nLoading final data ('",out_dir,"')...\n"))
     for(fn in outfn){
-      if(!any(dir(out_dir)%in%fn))
+      if(!any(dir(out_dir)%in%paste0(fn,".Rdata")))
         stop(paste0(fn," file not found in: \t \t",out_dir,
                     "\n\nplease go to: https://figshare.com/s/6dea7722df39e07d79f0","",
-                    "\n\nand download file into: \t \t",out_dir,"/",fn))
-      load(file.path(out_dir,fn))
+                    "\n\nand download file into: \t \t",in_dir," and re-run the R/make.R script"))
+      load(file.path(out_dir,paste0(fn,".Rdata")))
       cat(paste("\nloaded:",fn))
     }
-    cat(paste0("\nfinal data loaded('",out_dir,"')...\n"))
+    cat(paste0("\n\nfinal data loaded('",out_dir,"')...\n"))
     
-  }
-
-   
-  #_______________________________________
-  # Load ROMSNPZ covariates:
-  #_______________________________________
-
-    Scenarios     <-  unique(covariates$Scenario)
-    A1B_n         <-  grep("A1B",Scenarios)
-    bio_n         <-  grep("bio",Scenarios)
-    rcp45_n       <-  grep("rcp45",Scenarios)
-    rcp85_n       <-  grep("rcp85",Scenarios)
-    rcp85NoBio_n  <-  setdiff(rcp85_n,bio_n)
-    plotList      <-  Scenario_set  <- c(1,rcp45_n,rcp85NoBio_n)
-    esnm          <-  list(c(rcp45_n,rcp85NoBio_n))
-    esmlist       <-  list(rcp45_n,rcp85NoBio_n)
+  
     
     simnames  <- Scenarios
-    Years     <- sort(unique(dat_2_5_12$future_year)+start_yr-1)
+    Years     <- sort(unique(msm_noCap$future_year)+start_yr-1)
     nYrsTot   <- length(Years )
-    riskTypes <- unique(risk12$type)
 
-    #sim_msm    <- sim_msm%>%filter(Scenario%in%Scenario_set)
 # subset of downscaled projections used for the paper = Scenario_set
 # bio runs are a sensitivity set of runs to evaluate nutrient forcing
 # of boundary conditions, not used here bc they are highly similar to 
