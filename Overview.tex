@@ -106,8 +106,8 @@
 \begin{document}
 \maketitle
 
-ACLIM Repo:
-\href{https://github.com/kholsman/ACLIM}{\textbf{github.com/kholsman/ACLIM}}
+CEATTLE ACLIM Repo:
+\href{https://github.com/kholsman/ACLIM-CEATTLE}{\textbf{github.com/kholsman/ACLIM-CEATTLE}}
 
 \paragraph{Repo and data files maintained
 by:}\label{repo-and-data-files-maintained-by}
@@ -229,15 +229,18 @@ repository:}\label{download-the-code-from-the-github-repository}
 figshare:}\label{download-data-from-figshare}
 
 To run the analyses or create the paper figures you will now need to
-download the large zipped data folder here: `{[}your local directory
-path{]}/EBM\_Holsman\_NatComm/data' or simply run the following script
-to download and place the data in the correct sub-folders:
+download the large zipped data folder here:\\
+\url{https://figshare.com/s/bc27693d6b9002425bff} (DOI: ) and copy -
+paste the contents (folders ``in'' and ``out''``) it in the directory:\\
+`{[}your local directory path{]}/EBM\_Holsman\_NatComm/data' or simply
+run the following script to download and place the data in the correct
+sub-folders:
 
 \begin{Shaded}
 \begin{Highlighting}[]
     \KeywordTok{cat}\NormalTok{(}\StringTok{"The download takes a few mins (large data files)...}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
 
-    \NormalTok{url       <-}\StringTok{ "tobeadded"} 
+    \NormalTok{url       <-}\StringTok{ "https://ndownloader.figshare.com/files/23756315?private_link=bc27693d6b9002425bff"}
     \NormalTok{dest_path  <-}\StringTok{  }\KeywordTok{file.path}\NormalTok{(main,}\StringTok{"Data/summary_files.zip"}\NormalTok{)}
     \KeywordTok{download.file}\NormalTok{(}\DataTypeTok{url=}\NormalTok{url, }\DataTypeTok{destfile=}\NormalTok{dest_path,}\DataTypeTok{method=}\StringTok{"libcurl"}\NormalTok{)}
     

@@ -1,4 +1,4 @@
-ACLIM Repo: [**github.com/kholsman/ACLIM**](https://github.com/kholsman/ACLIM "ACLIM Repo")
+CEATTLE ACLIM Repo: [**github.com/kholsman/ACLIM-CEATTLE**](https://github.com/kholsman/ACLIM-CEATTLE)
 
 #### Repo and data files maintained by:
 
@@ -78,12 +78,14 @@ For more information about the downscaling models underpinning these simulations
 2.2. Download data from figshare:
 ---------------------------------
 
-To run the analyses or create the paper figures you will now need to download the large zipped data folder here: <!-- https://figshare.com/s/bc27693d6b9002425bff (DOI: ) and copy - paste the contents (folders "in" and "out"") it in the directory:  --> '\[your local directory path\]/EBM\_Holsman\_NatComm/data' or simply run the following script to download and place the data in the correct sub-folders: <!-- url  <- "https://ndownloader.figshare.com/files/23756315?private_link=bc27693d6b9002425bff"     -->
+To run the analyses or create the paper figures you will now need to download the large zipped data folder here:
+<https://figshare.com/s/bc27693d6b9002425bff> (DOI: ) and copy - paste the contents (folders "in" and "out"") it in the directory:
+'\[your local directory path\]/EBM\_Holsman\_NatComm/data' or simply run the following script to download and place the data in the correct sub-folders:
 
 ``` r
     cat("The download takes a few mins (large data files)...\n")
 
-    url       <- "tobeadded" 
+    url       <- "https://ndownloader.figshare.com/files/23756315?private_link=bc27693d6b9002425bff"
     dest_path  <-  file.path(main,"Data/summary_files.zip")
     download.file(url=url, destfile=dest_path,method="libcurl")
     
