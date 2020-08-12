@@ -2,6 +2,11 @@
 title: "ACLIM - CEATTLE simulations"
 author: "Kirstin Holsman"
 output:
+  pdf_document:
+    fig_caption: yes
+    highlight: tango
+    keep_tex: yes
+    latex_engine: xelatex
   html_document:
     df_print: kable
     fig_caption: yes
@@ -10,11 +15,6 @@ output:
   - \usepackage{inputenc}
   - \usepackage{unicode-math}
   - \pagenumbering{gobble}ls()
-  pdf_document:
-    fig_caption: yes
-    highlight: tango
-    keep_tex: yes
-    latex_engine: xelatex
   word_document:
     fig_caption: yes
     fig_width: 4
@@ -127,7 +127,7 @@ https://figshare.com/s/bc27693d6b9002425bff (DOI: ) and copy - paste the content
 ```{r, eval=FALSE}
     cat("The download takes a few mins (large data files)...\n")
 
-    url       <- "https://ndownloader.figshare.com/files/23756315?private_link=bc27693d6b9002425bff"
+    url       <- "https://ndownloader.figshare.com/files/24216482?private_link=bc27693d6b9002425bff"
     dest_path  <-  file.path(main,"Data/summary_files.zip")
     download.file(url=url, destfile=dest_path,method="libcurl")
     
