@@ -1,7 +1,6 @@
 ---
 title: "ACLIM - CEATTLE simulations"
 author: "Kirstin Holsman"
-date: "6/24/2020"
 output:
   html_document:
     df_print: kable
@@ -39,7 +38,7 @@ CEATTLE ACLIM Repo: [**github.com/kholsman/ACLIM-CEATTLE**](https://github.com/k
    Alaska Fisheries Science Center  
    NOAA Fisheries, Seattle WA  
    **<kirstin.holsman@noaa.gov>**  
-   *Last updated: `r thisYr`*
+   *Last updated: `r today`*
    
    
 ## 1 Overview

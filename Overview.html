@@ -179,12 +179,11 @@ summary {
 
 <h1 class="title toc-ignore">ACLIM - CEATTLE simulations</h1>
 <h4 class="author">Kirstin Holsman</h4>
-<h4 class="date">6/24/2020</h4>
 
 </div>
 
 
-<p>ACLIM Repo: <a href="https://github.com/kholsman/ACLIM" title="ACLIM Repo"><strong>github.com/kholsman/ACLIM</strong></a></p>
+<p>CEATTLE ACLIM Repo: <a href="https://github.com/kholsman/ACLIM-CEATTLE"><strong>github.com/kholsman/ACLIM-CEATTLE</strong></a></p>
 <div id="repo-and-data-files-maintained-by" class="section level4">
 <h4>Repo and data files maintained by:</h4>
 <ul>
@@ -192,7 +191,7 @@ summary {
 Alaska Fisheries Science Center<br />
 NOAA Fisheries, Seattle WA<br />
 <strong><a href="mailto:kirstin.holsman@noaa.gov">kirstin.holsman@noaa.gov</a></strong><br />
-<em>Last updated: 2020</em></li>
+<em>Last updated: Aug 12, 2020</em></li>
 </ul>
 </div>
 <div id="overview" class="section level2">
@@ -390,10 +389,12 @@ NOAA Fisheries, Seattle WA<br />
 </div>
 <div id="download-data-from-figshare" class="section level2">
 <h2>2.2. Download data from figshare:</h2>
-<p>To run the analyses or create the paper figures you will now need to download the large zipped data folder here: <!-- https://figshare.com/s/bc27693d6b9002425bff (DOI: ) and copy - paste the contents (folders "in" and "out"") it in the directory:  --> ‘[your local directory path]/EBM_Holsman_NatComm/data’ or simply run the following script to download and place the data in the correct sub-folders: <!-- url  <- "https://ndownloader.figshare.com/files/23756315?private_link=bc27693d6b9002425bff"     --></p>
+<p>To run the analyses or create the paper figures you will now need to download the large zipped data folder here:<br />
+<a href="https://figshare.com/s/bc27693d6b9002425bff" class="uri">https://figshare.com/s/bc27693d6b9002425bff</a> (DOI: ) and copy - paste the contents (folders “in” and “out”“) it in the directory:<br />
+‘[your local directory path]/EBM_Holsman_NatComm/data’ or simply run the following script to download and place the data in the correct sub-folders:</p>
 <pre class="r"><code>    cat(&quot;The download takes a few mins (large data files)...\n&quot;)
 
-    url       &lt;- &quot;tobeadded&quot; 
+    url       &lt;- &quot;https://ndownloader.figshare.com/files/23756315?private_link=bc27693d6b9002425bff&quot;
     dest_path  &lt;-  file.path(main,&quot;Data/summary_files.zip&quot;)
     download.file(url=url, destfile=dest_path,method=&quot;libcurl&quot;)
     

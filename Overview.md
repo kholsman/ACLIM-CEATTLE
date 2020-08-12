@@ -6,7 +6,7 @@ CEATTLE ACLIM Repo: [**github.com/kholsman/ACLIM-CEATTLE**](https://github.com/k
     Alaska Fisheries Science Center
     NOAA Fisheries, Seattle WA
     **<kirstin.holsman@noaa.gov>**
-    *Last updated: 2020*
+    *Last updated: Aug 12, 2020*
 
 1 Overview
 ----------
